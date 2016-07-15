@@ -1,0 +1,29 @@
+.board {
+  width: 80vh;
+  height: 80vh;
+
+  margin: auto;
+
+  background-color: gray;
+
+  box-sizing: border-box;
+}
+
+.board .row {
+  display: flex;
+  //align-items: stretch;
+
+  background-color: pink;
+  box-sizing: border-box;
+}
+
+.board .row .item {
+  flex: 1 0 auto;
+  align-self: stretch;
+
+  border: solid 0.1vw green;
+
+  background-color: orange;
+  z-index: 5;
+  box-sizing: border-box;
+}
