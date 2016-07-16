@@ -21,11 +21,11 @@ export default class Board extends React.Component {
       <div className="board">
         {_.range(0, size).map((row) => {
           return (
-            <div className="row" style={{width: boardSize + 'vh'}}>
+            <div key={row} className="row" style={{width: boardSize + 'vh'}}>
               {_.range(0, size).map((col) => {
                 return (
-                  <div className="item" style={{height: boardRelativeSize+ 'vh'}}>
-                    <Square row={row} col={col} />
+                  <div key={[row, col]} className="item" style={{height: boardRelativeSize+ 'vh'}}>
+                    <Square key={[row, col]} row={row} col={col} />
                   </div>
                 );
               })}
