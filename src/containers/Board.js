@@ -2,39 +2,43 @@ import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-import Square from './Square';
-import { generateBoard } from '../actions/gameActions';
+import Square from '../components/Square';
+import { generateBoard, clickSquare } from '../actions/gameActions';
 
 import '../styles/board.scss';
 
 const getState = (state) => {
-  // might be a bit expensive?
-  // TODO: refactor to get state once in parent (Board) and pass down grid status
   return {
+    board: state.game.board,
     size: state.game.size
   };
 };
 
-@connect(getState, {generateBoard}, null, {withRef: true})
+@connect(getState, {generateBoard, clickSquare}, null, {withRef: true})
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.props.generateBoard(4);
     this.state = {
-      size: this.props.size
+      size: this.props.size,
+      board: this.props.board
     };
     this.props.generateBoard(this.state.size);
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState({
-      size: this.props.size
-    });
-    
-    if (newProps.size !== this.state.size) {
+    //TODO: check for prop change
+    if (!_.isEqual(this.state.board, newProps.board)) {
+      this.setState({
+        board: newProps.board
+      });
     }
   }
-  
+
+  handleClick(row, col) {
+    console.log("got a call in board handleclick: - " + row + ", " + col)
+    this.props.clickSquare(row, col);
+  }
+
   generateBoard(size) {
     // TODO: distinguish between number of cells (size) and dimensions (boardSize);
     const boardSize = 80;
@@ -48,7 +52,7 @@ export default class Board extends React.Component {
               {_.range(0, size).map((col) => {
                 return (
                   <div key={[row, col]} className="item" style={{height: boardRelativeSize+ 'vh'}}>
-                    <Square key={[row, col]} row={row} col={col} />
+                    <Square handleClick={this.handleClick.bind(this, row, col)} status={this.state.board[row][col].status} key={[row, col]} row={row} col={col} />
                   </div>
                 );
               })}
@@ -63,8 +67,8 @@ export default class Board extends React.Component {
 
   render() {
     // placeholderish
-    console.log("board sizes: " + this.state.size);
-    const b = this.generateBoard(this.state.size); // bit expensive?
+    console.log("rerendered");
+    const b = this.generateBoard(this.state.board.length); // bit expensive?
     return b;
   }
 }

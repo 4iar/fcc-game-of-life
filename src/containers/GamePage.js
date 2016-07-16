@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Board from '../components/Board';
+import Board from './Board';
 import Controls from './Controls';
 
 import '../styles/game-page.scss';

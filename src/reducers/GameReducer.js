@@ -7,7 +7,7 @@ export default function fuelSavingsReducer(state = initialState.game, action) {
     case "SQUARE_CLICKED":
       //TODO: clean up this
       newState = Object.assign({}, state);
-      let newBoard = Object.assign({}, state.board);
+      let newBoard = state.board.slice();
       let squareStatus = state.board[action.row][action.col].status;
 
       // TODO: make less ugly
