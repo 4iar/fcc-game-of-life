@@ -11,14 +11,12 @@ export default function fuelSavingsReducer(state = initialState.game, action) {
       // TODO: make less ugly
       if (squareStatus === 'new') {
         newState.board[action.row][action.col].status = 'old';
-        return newState;
       } else if (squareStatus === 'old') {
-        newState.board[action.row][action.col].status = 'blank';
-        return newState;
-      } else {
+        newState.board[action.row][action.col].status = 'dead';
+      } else if (squareStatus === 'dead') {
         newState.board[action.row][action.col].status = 'new';
-        return newState;
       }
+      return newState;
     default:
       return state;
   }

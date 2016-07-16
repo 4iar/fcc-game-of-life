@@ -40,7 +40,7 @@ export default class Board extends React.Component {
 
   render() {
     // placeholderish
-    const b = this.generateBoard(50); // bit expensive?
+    const b = this.generateBoard(1); // bit expensive?
     return b;
   }
 }

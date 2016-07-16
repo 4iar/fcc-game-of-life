@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 import { clickSquare } from '../actions/gameActions';
 
-const getState = (state) => {
+import '../styles/square.scss';
+
+const getBoard = (state) => {
   // might be a bit expensive?
   // TODO: refactor to get state once in parent (Board) and pass down grid status
   return {
@@ -11,7 +13,7 @@ const getState = (state) => {
   };
 };
 
-@connect(getState, {clickSquare}, null, {withRef: true})
+@connect(getBoard, {clickSquare}, null, {withRef: true})
 export default class Square extends React.Component {
   constructor(props) {
     super(props);
@@ -19,13 +21,13 @@ export default class Square extends React.Component {
     this.statusClasses = {
       new: 'square-new',
       old: 'square-old',
-      blank: 'square-blank'
+      dead: 'square-dead'
     };
 
     this.state = {
-      col: this.props.col,
       row: this.props.row,
-      status: this.props.board.status
+      col: this.props.col,
+      status: this.props.board[this.props.row][this.props.col].status
     };
   }
 
@@ -43,7 +45,8 @@ export default class Square extends React.Component {
 
   render() {
     return (
-      <div onClick={this.handleClick.bind(this)} className={this.statusClasses[this.state.status]}>
+      <div onClick={this.handleClick.bind(this)} className={this.statusClasses[this.state.status] + ' square'}>
+        {this.props.test}
       </div>
     );
   }
