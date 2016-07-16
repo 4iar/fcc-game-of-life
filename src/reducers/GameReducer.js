@@ -4,7 +4,8 @@ export default function fuelSavingsReducer(state = initialState.game, action) {
   let newState;
 
   switch (action.type) {
-    case "SQUARE_CLICKED":
+    case "SQUARE_CLICKED": {
+      
       //TODO: clean up this
       newState = Object.assign({}, state);
       let newBoard = state.board.slice();
@@ -25,12 +26,14 @@ export default function fuelSavingsReducer(state = initialState.game, action) {
         status: squareStatus};
       newState.board = newBoard;
       return newState;
-    case "SET_BOARD":
+    }
+    case "SET_BOARD": {
       console.log("got a call to set board: ");
       return {...state,
         board: action.newBoard,
         size: action.newBoard.length
       }
+    }
     default:
       return state;
   }
