@@ -20,15 +20,17 @@ export default class Board extends React.Component {
     const board = (
       <div className="board">
         {_.range(0, size).map((row) => {
-          return <div className="row" style={{width: boardSize + 'vh'}}>
-            {_.range(0, size).map((col) => {
-              return (
-                <div className="item" style={{height: boardRelativeSize+ 'vh'}}>
-                  <Square row={row} col={col} />
-                </div>
-              );
-            })}
-          </div>;
+          return (
+            <div className="row" style={{width: boardSize + 'vh'}}>
+              {_.range(0, size).map((col) => {
+                return (
+                  <div className="item" style={{height: boardRelativeSize+ 'vh'}}>
+                    <Square row={row} col={col} />
+                  </div>
+                );
+              })}
+            </div>
+          );
         })}
       </div>
     );
