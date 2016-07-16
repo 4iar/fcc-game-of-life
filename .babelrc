@@ -1,5 +1,5 @@
 {
-  "plugins": ["syntax-decorators", "transform-decorators-legacy"],
+  "plugins": ["syntax-decorators", "transform-decorators-legacy", "transform-object-rest-spread"],
   "presets": [
     "es2015",
     "react"
