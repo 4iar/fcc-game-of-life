@@ -6,3 +6,17 @@ export function clickSquare(row, col) {
     col: col
   };
 }
+
+export function generateBoard(size) {
+  const newSquareObject = {status: 'dead'};
+  let newBoard = []
+  
+  for (let row = 0; row < size; row++) {
+    newBoard.push(Array(size).fill(newSquareObject));
+  }
+  
+  return {
+    type: 'SET_BOARD',
+    newBoard: newBoard
+  };
+}
