@@ -20,3 +20,10 @@ export function generateBoard(size) {
     newBoard: newBoard
   };
 }
+
+export function setBoard(newBoard) {
+  return {
+    type: 'SET_BOARD',
+    newBoard: newBoard
+  };
+}
