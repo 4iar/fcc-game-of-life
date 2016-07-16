@@ -8,11 +8,11 @@ export function clickSquare(row, col) {
 }
 
 export function generateBoard(size) {
-  const newSquareObject = {status: 'dead'};
   let newBoard = []
+  const newSquareStatus = 0;
   
   for (let row = 0; row < size; row++) {
-    newBoard.push(Array(size).fill(newSquareObject));
+    newBoard.push(Array(size).fill(newSquareStatus));
   }
   
   return {

@@ -52,7 +52,7 @@ export default class Board extends React.Component {
               {_.range(0, size).map((col) => {
                 return (
                   <div key={[row, col]} className="item" style={{height: boardRelativeSize+ 'vh'}}>
-                    <Square handleClick={this.handleClick.bind(this, row, col)} status={this.state.board[row][col].status} key={[row, col]} row={row} col={col} />
+                    <Square handleClick={this.handleClick.bind(this, row, col)} status={this.state.board[row][col]} key={[row, col]} row={row} col={col} />
                   </div>
                 );
               })}

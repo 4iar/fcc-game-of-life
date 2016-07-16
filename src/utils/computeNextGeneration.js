@@ -7,7 +7,7 @@ export default function computeNextFunction(board) {
   _.range(1,50).forEach(() => {
     let col = _.random(0,79);
     let row = _.random(0,79);
-    board[col][row] = {...board[col][row], status: _.sample(['old', 'new', 'dead'])};
+    board[col][row] = _.sample([0, 1, 2]);
   })
 
   return board;

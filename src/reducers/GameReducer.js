@@ -5,25 +5,19 @@ export default function fuelSavingsReducer(state = initialState.game, action) {
 
   switch (action.type) {
     case "SQUARE_CLICKED": {
-      
+
       //TODO: clean up this
       newState = Object.assign({}, state);
       let newBoard = state.board.slice();
-      let squareStatus = state.board[action.row][action.col].status;
+      let squareStatus = state.board[action.row][action.col];
 
-      // TODO: make less ugly
-      if (squareStatus === 'new') {
-        squareStatus = 'old';
-      } else if (squareStatus === 'old') {
-        squareStatus = 'dead';
-      } else if (squareStatus === 'dead') {
-        squareStatus = 'new';
+      if (squareStatus > 0) {
+        squareStatus--;
+      } else {
+        squareStatus = 2;
       }
 
-      console.log(squareStatus);
-      newBoard[action.row][action.col] = {
-        ...newBoard[action.row][action.row],
-        status: squareStatus};
+      newBoard[action.row][action.col] = squareStatus;
       newState.board = newBoard;
       return newState;
     }

@@ -8,9 +8,9 @@ export default class Square extends React.Component {
     super(props);
 
     this.statusClasses = {
-      new: 'square-new',
-      old: 'square-old',
-      dead: 'square-dead'
+      2: 'square-new',
+      1: 'square-old',
+      0: 'square-dead'
     };
 
     this.state = {
