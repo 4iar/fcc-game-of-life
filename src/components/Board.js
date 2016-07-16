@@ -7,17 +7,36 @@ import { generateBoard } from '../actions/gameActions';
 
 import '../styles/board.scss';
 
-@connect(null, {generateBoard}, null, {withRef: true})
+const getState = (state) => {
+  // might be a bit expensive?
+  // TODO: refactor to get state once in parent (Board) and pass down grid status
+  return {
+    size: state.game.size
+  };
+};
+
+@connect(getState, {generateBoard}, null, {withRef: true})
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.props.generateBoard(4);
     this.state = {
-      size: 10
+      size: this.props.size
     };
+    this.props.generateBoard(this.state.size);
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      size: this.props.size
+    });
+    
+    if (newProps.size !== this.state.size) {
+    }
+  }
+  
   generateBoard(size) {
+    // TODO: distinguish between number of cells (size) and dimensions (boardSize);
     const boardSize = 80;
     const boardRelativeSize = boardSize/size;
 
@@ -44,7 +63,8 @@ export default class Board extends React.Component {
 
   render() {
     // placeholderish
-    const b = this.generateBoard(4); // bit expensive?
+    console.log("board sizes: " + this.state.size);
+    const b = this.generateBoard(this.state.size); // bit expensive?
     return b;
   }
 }
