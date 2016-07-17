@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames/bind';
 
 import { setBoard, generateBoard } from '../actions/gameActions';
 import computeNextGeneration from '../utils/computeNextGeneration';
@@ -84,26 +85,32 @@ export default class Controls extends React.Component {
   }
 
   render() {
+    const size = this.state.size;
+    const speed = this.state.speed;
+
     return(
-      <div id="controls-container">
-        <section id="status">
-          <button onClick={this.resetSimulation.bind(this)}>Reset</button>
-          <button onClick={this.stopSimulation.bind(this)}>Pause</button>
-          <button onClick={this.startSimulation.bind(this)}>Play</button>
-          {this.state.generation}
-        </section>
+      <div>
+        <h1>{this.state.generation}</h1>
+        <div id="controls-container">
 
-        <section id="dimensions">
-          <button onClick={this.handleSizeClick.bind(this, 0)}>Small</button>
-          <button onClick={this.handleSizeClick.bind(this, 1)}>Medium</button>
-          <button onClick={this.handleSizeClick.bind(this, 2)}>Large</button>
-        </section>
+          <section id="status">
+            <button onClick={this.resetSimulation.bind(this)}>Reset</button>
+            <button onClick={this.stopSimulation.bind(this)}>Pause</button>
+            <button onClick={this.startSimulation.bind(this)}>Play</button>
+          </section>
 
-        <section id="speed">
-          <button onClick={this.handleSpeedClick.bind(this, 0)}>Slow</button>
-          <button onClick={this.handleSpeedClick.bind(this, 1)}>Medium</button>
-          <button onClick={this.handleSpeedClick.bind(this, 2)}>Fast</button>
-        </section>
+          <section id="dimensions">
+            <button className={classNames({selected: size == 0})} onClick={this.handleSizeClick.bind(this, 0)}>Small</button>
+            <button className={classNames({selected: size == 1})} onClick={this.handleSizeClick.bind(this, 1)}>Medium</button>
+            <button className={classNames({selected: size == 2})} onClick={this.handleSizeClick.bind(this, 2)}>Large</button>
+          </section>
+
+          <section id="speed">
+            <button className={classNames({selected: speed == 0})} onClick={this.handleSpeedClick.bind(this, 0)}>Slow</button>
+            <button className={classNames({selected: speed == 1})} onClick={this.handleSpeedClick.bind(this, 1)}>Medium</button>
+            <button className={classNames({selected: speed == 2})} onClick={this.handleSpeedClick.bind(this, 2)}>Fast</button>
+          </section>
+        </div>
       </div>
     );
   }

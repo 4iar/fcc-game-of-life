@@ -1,13 +1,39 @@
+h1 {
+  text-align: center;
+  margin-bottom: -.5vh;
+  font-size: 3vh;
+}
+
 #controls-container {
   display: flex;
   justify-content: center;
 
-  padding-top: 3vh;
   margin-bottom: 1vh;
 }
 
-#controls-container #status,#dimensions,#speed {
+#controls-container #status,#dimensions,#speed,#generation {
   background-color: gray;
-  border: solid 1vh black;
+  border: solid 0.5vh black;
 }
 
+#controls-container button {
+  background-color: white;
+  color: black;
+  border: .1vh solid #4CAF50;
+  font-size: 2vh;
+}
+
+#status button {
+  background-color: #4CAF50;
+}
+#controls-container .selected {
+  background-color: #4CAF50;
+}
+
+#status {
+  margin-right: 1vh;
+}
+
+#speed {
+  margin-left: 1vh;
+}
