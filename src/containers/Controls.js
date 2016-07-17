@@ -19,19 +19,22 @@ export default class Controls extends React.Component {
 
     this.intervalTimerId = 0;
 
+    this.sizes = { 0: 20, 1: 40, 2: 80 };
+
     this.state = {
-      generation: 0
+      generation: 0,
+      size: 1,
     };
   }
 
   handleSizeClick(size) {
-    const sizes = {
-      0: 20,
-      1: 40,
-      2: 80
-    };
-
-    this.props.generateBoard(sizes[size]);
+    this.stopSimulation();
+    this.setState({
+        size
+      }, () => {
+        this.props.generateBoard(this.sizes[size]);
+      }
+    )
   }
 
   tickNextGeneration() {
