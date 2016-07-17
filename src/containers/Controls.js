@@ -35,10 +35,8 @@ export default class Controls extends React.Component {
     this.props.generateBoard(sizes[size]);
   }
 
-  tickNextGeneration(board) {
-    const newBoard = computeNextGeneration(board);
-    console.log("got a new board: ");
-    console.log(newBoard);
+  tickNextGeneration() {
+    const newBoard = computeNextGeneration(this.props.board);
     this.props.setBoard(newBoard);
     
     this.setState({
@@ -48,8 +46,7 @@ export default class Controls extends React.Component {
 
   startSimulation() {
     this.stopSimulation();
-    console.log(this.props.board);
-    this.intervalTimerId = setInterval(this.tickNextGeneration.bind(this, this.props.board), 500);
+    this.intervalTimerId = setInterval(this.tickNextGeneration.bind(this), 500);
   }
 
   stopSimulation() {
