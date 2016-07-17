@@ -20,9 +20,11 @@ export default class Controls extends React.Component {
     this.intervalTimerId = 0;
 
     this.sizes = { 0: 20, 1: 40, 2: 80 };
+    this.speeds = { 0: 1000, 1: 500, 2: 250 };
 
     this.state = {
       generation: 0,
+      speed: 1,
       size: 1,
     };
   }
@@ -48,11 +50,21 @@ export default class Controls extends React.Component {
 
   startSimulation() {
     this.stopSimulation();
-    this.intervalTimerId = setInterval(this.tickNextGeneration.bind(this), 500);
+
+    this.intervalTimerId = setInterval(
+      this.tickNextGeneration.bind(this),
+      this.speeds[this.state.speed]
+    );
   }
 
   stopSimulation() {
     clearInterval(this.intervalTimerId);
+  }
+
+  handleSpeedClick(speed) {
+    this.setState({
+      speed
+    }, this.startSimulation)
   }
 
   render() {
@@ -71,9 +83,9 @@ export default class Controls extends React.Component {
         </section>
 
         <section id="speed">
-          <button>Slow</button>
-          <button>Medium</button>
-          <button>Fast</button>
+          <button onClick={this.handleSpeedClick.bind(this, 0)}>Slow</button>
+          <button onClick={this.handleSpeedClick.bind(this, 1)}>Medium</button>
+          <button onClick={this.handleSpeedClick.bind(this, 2)}>Fast</button>
         </section>
       </div>
     );
