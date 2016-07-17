@@ -39,7 +39,8 @@ export default class Controls extends React.Component {
   handleSizeClick(size) {
     this.stopSimulation();
     this.setState({
-        size
+        size,
+        generation: 0
       }, () => {
         this.props.generateBoard(this.sizes[size]);
       }
