@@ -25,7 +25,7 @@ export default function computeNextFunction(board) {
 }
 
 function getNeighbourCount(board, row, col) {
-  let neighbours = 0
+  let neighbours = 0;
 
   for (let rowRelative = -1; rowRelative < 2; rowRelative++){
     for (let colRelative = -1; colRelative < 2; colRelative++) {

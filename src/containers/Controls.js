@@ -18,7 +18,7 @@ export default class Controls extends React.Component {
     super(props);
 
     this.intervalTimerId = 0;
-    
+
     this.state = {
       generation: 0
     };
@@ -29,16 +29,15 @@ export default class Controls extends React.Component {
       0: 20,
       1: 40,
       2: 80
-    }
+    };
 
-    console.log(sizes[size])
     this.props.generateBoard(sizes[size]);
   }
 
   tickNextGeneration() {
     const newBoard = computeNextGeneration(this.props.board);
     this.props.setBoard(newBoard);
-    
+
     this.setState({
       generation: this.state.generation + 1
     });
@@ -50,7 +49,6 @@ export default class Controls extends React.Component {
   }
 
   stopSimulation() {
-    console.log("simulation stopped");
     clearInterval(this.intervalTimerId);
   }
 

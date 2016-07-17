@@ -22,11 +22,10 @@ export default function fuelSavingsReducer(state = initialState.game, action) {
       return newState;
     }
     case "SET_BOARD": {
-      console.log("got a call to set board: ");
       return {...state,
         board: action.newBoard,
         size: action.newBoard.length
-      }
+      };
     }
     default:
       return state;

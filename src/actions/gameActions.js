@@ -1,5 +1,4 @@
 export function clickSquare(row, col) {
-  console.log("got click at " + row + ", " + col);
   return {
     type: 'SQUARE_CLICKED',
     row: row,
@@ -8,13 +7,13 @@ export function clickSquare(row, col) {
 }
 
 export function generateBoard(size) {
-  let newBoard = []
+  let newBoard = [];
   const newSquareStatus = 0;
-  
+
   for (let row = 0; row < size; row++) {
     newBoard.push(Array(size).fill(newSquareStatus));
   }
-  
+
   return {
     type: 'SET_BOARD',
     newBoard: newBoard

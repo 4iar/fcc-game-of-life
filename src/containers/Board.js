@@ -35,7 +35,6 @@ export default class Board extends React.Component {
   }
 
   handleClick(row, col) {
-    console.log("got a call in board handleclick: - " + row + ", " + col)
     this.props.clickSquare(row, col);
   }
 
@@ -67,7 +66,6 @@ export default class Board extends React.Component {
 
   render() {
     // placeholderish
-    console.log("rerendered");
     const b = this.generateBoard(this.state.board.length); // bit expensive?
     return b;
   }
