@@ -43,7 +43,7 @@ export default class Controls extends React.Component {
       }, () => {
         this.props.generateBoard(this.sizes[size]);
       }
-    )
+    );
   }
 
   tickNextGeneration() {
@@ -64,6 +64,14 @@ export default class Controls extends React.Component {
     );
   }
 
+  resetSimulation() {
+    this.stopSimulation();
+    this.setState({
+      generation: 0
+    });
+    this.props.generateBoard(this.sizes[this.state.size]);
+  }
+
   stopSimulation() {
     clearInterval(this.intervalTimerId);
   }
@@ -71,15 +79,16 @@ export default class Controls extends React.Component {
   handleSpeedClick(speed) {
     this.setState({
       speed
-    }, this.startSimulation)
+    }, this.startSimulation);
   }
 
   render() {
     return(
       <div id="controls-container">
         <section id="status">
-          <button onClick={this.stopSimulation.bind(this)}>Stop</button>
-          <button onClick={this.startSimulation.bind(this)}>PlayPause</button>
+          <button onClick={this.resetSimulation.bind(this)}>Reset</button>
+          <button onClick={this.stopSimulation.bind(this)}>Pause</button>
+          <button onClick={this.startSimulation.bind(this)}>Play</button>
           {this.state.generation}
         </section>
 
