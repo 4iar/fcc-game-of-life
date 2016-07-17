@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { setBoard, generateBoard } from '../actions/gameActions';
 import computeNextGeneration from '../utils/computeNextGeneration';
+import generateRandomBoard from '../utils/generateRandomBoard';
 
 import '../styles/controls.scss';
 
@@ -27,6 +28,12 @@ export default class Controls extends React.Component {
       speed: 1,
       size: 1,
     };
+
+    // randomise and start the board immediately
+    this.props.setBoard(
+      generateRandomBoard(this.sizes[this.state.size])
+    );
+    this.startSimulation();
   }
 
   handleSizeClick(size) {
