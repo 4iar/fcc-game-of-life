@@ -6,6 +6,8 @@ import configureStore from './store/configureStore';
 
 import GamePage from './containers/GamePage';
 
+import './styles/index.scss';
+
 
 const store = configureStore();
 
